@@ -1,0 +1,5 @@
+neo4j==4.4
+django==4.0.4
+neomodel==4.0.8
+django_neomodel==0.0.7
+djangorestframework==3.13.1
