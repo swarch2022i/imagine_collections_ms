@@ -1,12 +1,8 @@
-from django.urls import path, include
-
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from collections_api import views
 
-# router = DefaultRouter()
-# router.register('owner', views.OwnerVieSet, basename='owner')
-
 urlpatterns = [
-    path('user', views.OwnerView.as_view()),
+    path('owner', views.OwnerView.as_view()),
     path('collection', views.CollectionView.as_view()),
+    path('image', views.ImageView.as_view()),
 ]
