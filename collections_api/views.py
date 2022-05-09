@@ -150,7 +150,7 @@ class CollectionView(APIView):
 
     def patch(self, request, format=None):
         """Handle updating an object. """
-        key = 'uuidCollection'
+        key = 'uuid'
         data = request.data
         if key not in data.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST, data=MISSING_DATA)
@@ -172,7 +172,7 @@ class CollectionView(APIView):
 
     def delete(self, request, format=None):
         """ Handle deleting an object. """
-        key = 'uuidCollection'
+        key = 'uuid'
         data = request.data
         if key not in data.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST, data=MISSING_DATA)

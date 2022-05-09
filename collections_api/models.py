@@ -45,7 +45,7 @@ class ImageCollection(StructuredNode):
     def delete(self):
         """ Delete the collection and all the images in it """
         for image in self.images:
-            if len(image.collectionsIn.match().all(lazy=True)) == 0:
+            if len(image.collectionsIn.match().all(lazy=True)) == 1:
                 image.delete()
         return super().delete()
 
