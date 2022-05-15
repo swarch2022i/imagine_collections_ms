@@ -23,6 +23,7 @@ class ImageCollection(StructuredNode):
     uuid = UniqueIdProperty()
     images = RelationshipTo('Image', 'HAS_IMAGE',
                             cardinality=cardinality.OneOrMore)
+    title = StringProperty(required=True, max_length=100)
     description = StringProperty(default='Sin Descripción', max_length=250)
     owner = RelationshipFrom('Owner', 'OWN',
                              cardinality=cardinality.OneOrMore)
@@ -69,7 +70,8 @@ class ImageCollection(StructuredNode):
         """Return a serializable version of the node."""
         return {
             'uid': self.uuid,
-            'images_ids': [image.serialize for image in self.images.all()[:5]],
+            'title': self.title,
+            'images_ids': [image.serialize for image in self.images.all()[:4]],
             'description': self.description,
         }
 
@@ -77,6 +79,7 @@ class ImageCollection(StructuredNode):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
+            'title': self.title,
             'images_ids': [image.serialize for image in self.images.all()],
             'description': self.description
         }

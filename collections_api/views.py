@@ -138,7 +138,7 @@ class CollectionView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST, data=MISSING_DATA)
 
         collection = models.ImageCollection(
-            description=data.get('description', None))
+            description=data.get('description', None), title=data.get('title', None))
         collection.save()
         collection.connect(images_ids, uuid)
         data = {
@@ -148,7 +148,7 @@ class CollectionView(APIView):
         }
         return Response(status=status.HTTP_201_CREATED, data=data)
 
-    def patch(self, request, format=None):
+    def patch(self, request):
         """Handle updating an object. """
         key = 'uuid'
         data = request.data
@@ -162,7 +162,8 @@ class CollectionView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND, data=NOT_FOUND_ERR)
 
         collection.update(images_ids=data.get('images_ids', None),
-                          description=data.get('description', None))
+                          description=data.get('description', None),
+                          title=data.get('title', None))
         collection.save()
         data = {
             'status': OK,
@@ -170,7 +171,7 @@ class CollectionView(APIView):
         }
         return Response(status=status.HTTP_200_OK, data=data)
 
-    def delete(self, request, format=None):
+    def delete(self, request):
         """ Handle deleting an object. """
         key = 'uuid'
         data = request.data
